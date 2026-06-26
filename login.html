@@ -22,9 +22,13 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+    import { 
+      getAuth, 
+      signInWithEmailAndPassword,
+      sendEmailVerification 
+    } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-    // Correct Firebase config (must match register.html)
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyC4h52_rz2IqmOluxdMY6D_AS0i1nO_7z4",
       authDomain: "wingamer-login-page.firebaseapp.com",
@@ -45,10 +49,26 @@
       const password = document.getElementById("password").value;
 
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          localStorage.setItem("loggedIn", "true");
+        .then((userCredential) => {
+          const user = userCredential.user;
 
-          // Redirect to your Neocities website
+          // 🔥 BLOCK unverified users
+          if (!user.emailVerified) {
+            alert("Please verify your email before logging in.");
+
+            // Optional: allow user to resend verification email
+            if (confirm("Resend verification email?")) {
+              sendEmailVerification(user).then(() => {
+                alert("Verification email sent again. Check your inbox.");
+              });
+            }
+
+            auth.signOut();
+            return;
+          }
+
+          // If verified → allow login
+          localStorage.setItem("loggedIn", "true");
           window.location.href = "https://wingamercompany.netlify.app/";
         })
         .catch(err => {
