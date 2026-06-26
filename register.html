@@ -22,9 +22,13 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+    import { 
+      getAuth, 
+      createUserWithEmailAndPassword,
+      sendEmailVerification 
+    } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
-    // Correct Firebase config (must match login.html exactly)
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyC4h52_rz2IqmOluxdMY6D_AS0i1nO_7z4",
       authDomain: "wingamer-login-page.firebaseapp.com",
@@ -45,9 +49,15 @@
       const password = document.getElementById("password").value;
 
       createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert("Account created successfully!");
-          window.location.href = "login.html";
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          // Send verification email
+          sendEmailVerification(user)
+            .then(() => {
+              alert("Account created! A verification email has been sent. Please check your inbox.");
+              window.location.href = "login.html";
+            });
         })
         .catch(err => {
           console.error("Firebase error:", err);
