@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinGamer Company</title>
+
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="https://yt3.googleusercontent.com/DOecU6A8fb9vbZNrNBEK6M5TV4zMBnXX_CZs4rTkaZlqv1U7VZKmrBS8HwtnEl5YX8uQKromtw=s160-c-k-c0x00ffffff-no-rj">
+</head>
+
+<body>
+
+<!-- 🔒 LOGIN PROTECTION -->
+<script>
+  if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+</script>
+
+<header>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="games.html">Games</a>
+        <a href="apps.html">Apps</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+
+        <!-- 🔓 LOGOUT BUTTON -->
+        <button onclick="logout()" class="logout-btn">Logout</button>
+    </nav>
+
+    <div class="banner">
+        <div class="titlebar">
+            <button class="minimize"></button>
+            <button class="maximize"></button>
+            <button class="close"></button>
+        </div>
+
+        <h1 data-text="Welcome to Wingamer's company Main Website">
+            Welcome to <span>Wingamer's company Main Website</span>
+        </h1>
+    </div>
+
+    <script>
+      // Close button (browser may block window.close unless opened by script)
+      document.querySelector('.close').onclick = () => {
+        alert("Browser blocked window.close(). Use the browser's close button instead.");
+      };
+
+      // Minimize (hide body)
+      document.querySelector('.minimize').onclick = () => {
+        document.body.style.display = 'none';
+        setTimeout(() => document.body.style.display = 'block', 500); // auto-restore
+      };
+
+      // Maximize (fullscreen)
+      document.querySelector('.maximize').onclick = () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen();
+        } else {
+          document.exitFullscreen();
+        }
+      };
+    </script>
+
+    <p>Your hub for games, app development, gaming content, and more.</p>
+    <hr>
+</header>
+
+<section class="content-box">
+    <p>I also want to share my YouTube channel.</p>
+    <p>I do have a Google Play Store developer account where I publish apps.</p>
+
+    <img src="https://yt3.googleusercontent.com/4oRdWs0iMfSGmXNrKNp5fBLyGFe4vwII-CTRBycwEFz7WdFQryTCjScU5-6vZkuqJ0Q9pj4vLA=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" 
+         height="200" width="800" alt="Channel Banner">
+</section>
+
+<section class="content-box">
+    <h2>My Gaming Consoles</h2>
+    <p>I own several consoles from Gen 7 to Gen 8.</p>
+    <h3>These include:</h3>
+    <p>Xbox 360, PlayStation 4, and Nintendo Switch.</p>
+    <p>I also own a OnePlus One and Samsung A17 / S6.</p>
+</section>
+
+<section class="content-box">
+    <p>Here is my YouTube channel link</p>
+
+    <a href="https://www.youtube.com/@ComputerTechVista710Gamer">
+        Visit my YouTube channel (currently no videos)
+    </a>
+</section>
+
+<footer class="content-box">
+    <h2>Contact Information</h2>
+    <p>If you have any questions or want more information, feel free to contact me:</p>
+    <ul>
+        <li>Email: devavrata29@gmail.com</li>
+        <li>Phone: (61) 482 050 768</li>
+        <li>Location: Canberra, Australia</li>
+    </ul>
+</footer>
+
+<!-- 🔓 LOGOUT SCRIPT -->
+<script>
+function logout() {
+  localStorage.removeItem("loggedIn");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
