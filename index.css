@@ -263,3 +263,6 @@ body {
 * {
     transition: 0.25s ease;
 }
+audio{
+   display:none;
+}
