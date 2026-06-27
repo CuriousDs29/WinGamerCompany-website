@@ -1,0 +1,45 @@
+
+
+
+<input id ="num1">
+<input id="num2">
+
+<button onclick="add()">Add</button>
+<button onclick="sub()">sub</button>
+<button onclick="div()">div</button>
+<button onclick="mup()">mup</button>
+
+<p id="Result">Result</p>
+<script>
+    var box1=document.getElementById('num1');
+    var box2=document.getElementById('num2');
+    var result=document.getElementById("Result");
+    function add() {
+        var box1vaule=Number(box1.value);
+        var box2vaule=Number(box2.value);
+        var total=box1vaule+box2vaule;
+        result.textContent=total;
+    }
+
+       function sub() {
+        var box1vaule=Number(box1.value);
+        var box2vaule=Number(box2.value);
+        var total=box1vaule-box2vaule;
+        result.textContent=total;
+    }
+
+    function div() {
+        var box1vaule=Number(box1.value);
+        var box2vaule=Number(box2.value);
+        var total=box1vaule/box2vaule;
+        result.textContent=total;
+    }
+
+    function mup() {
+        var box1vaule=Number(box1.value);
+        var box2vaule=Number(box2.value);
+        var total=box1vaule*box2vaule;
+        result.textContent=total;
+    }
+    
+</script>
